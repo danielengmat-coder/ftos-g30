@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo Executivo Mentoria G30</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. THE SETUP */
+        * { box-sizing: border-box; }
+        
+        p { margin: 0; margin-bottom: 15px; }
+        
+        body {
+            background-color: #0f172a;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px 0;
+            place-items: center;
+        }
+
+        .slide-container {
+            align-items: center;
+            background-color: #1e293b;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            height: 720px;
+            justify-content: center;
+            overflow: hidden;
+            padding: 60px;
+            position: relative;
+            width: 1280px;
+            border: 1px solid #334155;
+        }
+
+        /* Ambient Background Glow - Laranja */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, rgba(30, 41, 59, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .slide-container > * { position: relative; z-index: 1; }
+
+        /* 2. CONSISTENT TYPOGRAPHY */
+        .slide-container h1, .slide-container h2, .slide-container h3 {
+            color: #f8fafc;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+        }
+
+        .slide-container p, .slide-container li, .slide-container .subtitle,
+        .slide-container .number-label, .slide-container .chart-summary,
+        .slide-container .bar .label, .slide-container .tile p,
+        .slide-container .bleed-text-side p {
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .slide-container h1 { font-size: 70px; letter-spacing: -1px; }
+        .slide-container h1 span { color: #f97316; } /* Laranja */
+        
+        .slide-container .slide-title {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: left;
+            width: 100%;
+            color: #f8fafc;
+        }
+
+        .slide-container h3 { font-size: 32px; font-weight: 600; margin-bottom: 15px; color: #f1f5f9; }
+
+        .slide-container p, .slide-container li, .slide-container .subtitle,
+        .slide-container .chart-summary, .slide-container .bar .label,
+        .slide-container .tile p, .slide-container .bleed-text-side p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .slide-container .subtitle { font-size: 24px; font-weight: 400; margin: 20px auto; max-width: 800px; }
+
+        .slide-container .content-area {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* 3. LAYOUT DEFINITIONS */
+        .title-layout { text-align: center; }
+
+        .section-title-layout {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+        .section-title-layout h2 { font-size: 60px; margin-bottom: 20px; color: #f97316; } /* Laranja */
+        .section-title-layout p { font-size: 22px; margin: 0 auto; max-width: 700px; }
+        .section-title-layout hr {
+            background-color: #f97316; /* Laranja */
+            border: none;
+            height: 4px;
+            margin: 30px auto;
+            width: 80px;
+            border-radius: 2px;
+        }
+
+        .two-column {
+            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .two-column.tiled { align-items: stretch; }
+        .two-column.tiled > div {
+            background-color: #0f172a;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            padding: 40px;
+            text-align: left;
+        }
+        .two-column.tiled h3 { color: #f97316; } /* Laranja */
+        .two-column ul { list-style: disc; margin: 0; padding-left: 25px; }
+        .two-column li { margin-bottom: 15px; }
+
+        .image-wrapper {
+            border-radius: 12px;
+            height: 400px;
+            max-width: 100%;
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid #334155;
+        }
+        .image-wrapper img { height: 100%; width: 100%; object-fit: contain; }
+
+        .tiled-content {
+            align-items: stretch;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .tile {
+            align-items: flex-start;
+            background-color: #0f172a;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: flex-start;
+            padding: 40px 30px;
+            text-align: left;
+        }
+        .tile .icon {
+            color: #f97316; /* Laranja */
+            font-size: 48px;
+            margin-bottom: 25px;
+        }
+
+        .bullet-list { max-width: 1000px; width: 100%; }
+        .bullet-list ul { list-style: none; margin: 0; padding: 0; }
+        .bullet-list li { gap: 15px; margin-bottom: 25px; padding-left: 50px; position: relative; }
+        .bullet-list i {
+            color: #f97316; /* Laranja */
+            font-size: 28px;
+            left: 0;
+            margin-top: 2px;
+            position: absolute;
+            text-align: center;
+            top: 0;
+        }
+        .bullet-list li strong { color: #f8fafc; font-weight: 600; }
+
+        .highlight-numbers-layout { align-items: center; }
+        .highlight-numbers-layout > div:first-child { flex: 0 0 45%; text-align: center; }
+        .highlight-numbers-layout .number {
+            color: #f97316; /* Laranja */
+            font-size: 160px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1;
+            text-shadow: 0 0 40px rgba(249, 115, 22, 0.2);
+        }
+        .highlight-numbers-layout .number-label { font-size: 28px; font-weight: 600; color: #f8fafc; margin-top: 10px; }
+
+        /* Chart Styling */
+        .chart-container { display: flex; flex-direction: column; gap: 25px; width: 100%; }
+        .bar { align-items: center; display: flex; gap: 20px; }
+        .bar .label { color: #f8fafc; flex: 0 0 250px; font-weight: 600; text-align: right; }
+        .bar .bar-inner { background-color: #0f172a; border-radius: 8px; flex-grow: 1; height: 50px; border: 1px solid #334155; }
+        .bar .bar-fill {
+            align-items: center;
+            border-radius: 6px;
+            color: #0f172a;
+            display: flex;
+            font-size: 18px;
+            font-weight: 700;
+            height: 100%;
+            justify-content: flex-end;
+            padding-right: 15px;
+        }
+        .chart-summary { font-style: italic; margin-top: 30px; max-width: 90%; text-align: center; align-self: center; }
+
+        /* Bleed Image Right */
+        .slide-container.bleed-image-layout {
+            align-items: start;
+            display: grid;
+            gap: 50px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            padding: 0;
+        }
+        .slide-container.bleed-image-layout > .content-container { padding: 60px 0 60px 60px; display: flex; flex-direction: column; height: 100%; }
+        .slide-container.bleed-image-layout > .image-container { height: 100%; overflow: hidden; width: 100%; }
+        .slide-container.bleed-image-layout img.bleed-image-side {
+            border-radius: 0 16px 16px 0;
+            display: block;
+            height: 720px;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+        }
+        .slide-container.bleed-image-layout .bleed-text-side { display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
+
+        /* Q&A Layout */
+        .qa-layout { margin: 0 auto; text-align: center; width: 100%; align-self: center; }
+        .qa-layout h2 { font-size: 80px; margin-bottom: 20px; color: #f97316; } /* Laranja */
+        .qa-layout p { font-size: 24px; color: #f8fafc; }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title_Slide -->
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>Estratégias de <span>Marketing e Vendas</span></h1>
+        <p class="subtitle">Resumo Executivo da Reunião Mensal de Mentoria: Alinhamento de Processos, Qualificação de Leads e Gestão Comercial.</p>
+    </div>
+</div>
+
+<!-- Slide 2: Section_Title -->
+<div class="slide-container" id="slide2">
+    <div class="section-title-layout">
+        <hr>
+        <h2>O Conceito do GPS</h2>
+        <p>Para traçar uma nova rota de crescimento, é essencial identificar com precisão o momento atual da sua operação (Análise de Abril/Maio).</p>
+    </div>
+</div>
+
+<!-- Slide 3: Tiled_Text_With_Icons -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Desafios de Marketing (Leads)</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-filter-circle-xmark"></i></div>
+                <h3>Baixa Qualificação</h3>
+                <p>O maior gargalo atual: clientes buscando parcelas incompatíveis com o valor do veículo (ex: parcelas de R$ 500 para carros de R$ 90 mil).</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                <h3>Queda de Oportunidades</h3>
+                <p>Relatos consistentes de baixo volume de contatos efetivos e engajados através dos canais digitais e WhatsApp.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Custos Crescentes</h3>
+                <p>Aumento sistemático no Custo por Lead (CPL) e campanhas rodando sem gerar resultados concretos de vendas.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Bar_Chart_For_Comparisons -->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Benchmarks: Custo por Lead (CPL)</h2>
+    <div class="content-area">
+        <div class="chart-container">
+            <div class="bar">
+                <div class="label">Populares (Até R$ 50k)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 25%; background: linear-gradient(90deg, #fdba74, #fb923c);">R$ 4,50</div></div>
+            </div>
+            <div class="bar">
+                <div class="label">Intermediários (R$ 70k - R$ 80k)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 44%; background: linear-gradient(90deg, #fb923c, #f97316);">R$ 7,75</div></div>
+            </div>
+            <div class="bar">
+                <div class="label">Premium (Acima de R$ 90k)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 60%; background: linear-gradient(90deg, #f97316, #ea580c);">R$ 10,50</div></div>
+            </div>
+            <div class="bar">
+                <div class="label">SUVs Luxo (Acima de R$ 200k)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 100%; background: linear-gradient(90deg, #ea580c, #c2410c); color: #fff;">R$ 17,50</div></div>
+            </div>
+        </div>
+        <p class="chart-summary">É fundamental balizar suas expectativas de marketing com o CPL adequado para o seu ticket médio. Carros de maior valor agregado exigem um custo de aquisição naturalmente mais alto.</p>
+    </div>
+</div>
+
+<!-- Slide 5: Two_Column_Tiled_Text -->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">A Raiz do Problema: Criativos</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>Erro no Posicionamento</h3>
+                <p>Vídeos genéricos e padronizados ("oportunidade única", "carro novo") já não funcionam nas redes sociais. A comunicação deve focar exclusivamente na "dor" ou no "sonho" do cliente específico. Nas redes, o lojista deve ditar as regras, não o algoritmo.</p>
+            </div>
+            <div>
+                <h3>Exemplos Práticos</h3>
+                <ul>
+                    <li><strong>Chevrolet Spin (R$ 110k):</strong> Focar na necessidade de espaço para viagens em família ou trabalho (aplicativos/cooperativas).</li>
+                    <li><strong>Jeep Renegade (Entrada):</strong> Focar no sonho de ter o primeiro SUV e no custo-benefício (parcela acessível).</li>
+                    <li><strong>Motos Populares:</strong> A comunicação deve destacar prioritariamente o valor da parcela.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Image_Right_Text_Left -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">O Gargalo Comercial</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <ul class="bullet-list" style="margin-top: 10px;">
+                    <li><i class="fa-solid fa-arrow-trend-down"></i> <strong>Queda na Conversão:</strong> Leads qualificados chegam, mas a equipe de pré-venda falha em realizar o agendamento.</li>
+                    <li><i class="fa-solid fa-clock"></i> <strong>Falta de Agilidade:</strong> Vendedores não retornam os contatos no mesmo dia, perdendo o timing da venda.</li>
+                    <li><i class="fa-solid fa-user-xmark"></i> <strong>Falta de Personalização:</strong> Ausência do envio de vídeos personalizados do veículo para engajar o lead que está com crédito aprovado.</li>
+                    <li><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>Diagnóstico:</strong> A falha principal não é mais do marketing, mas sim do processo comercial e da performance da equipe de vendas.</li>
+                </ul>
+            </div>
+            <div>
+                <div class="image-wrapper"><img src="http://googleusercontent.com/image_collection/image_retrieval/17710819853421253467" alt="Consultor de vendas automotivas analisando dados em um tablet com carros ao fundo, estilo corporativo e moderno"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Styled_Bullet_Points -->
+<div class="slide-container" id="slide7">
+    <h2 class="slide-title">Boas Práticas de Qualificação e Conteúdo</h2>
+    <div class="content-area">
+        <div class="bullet-list">
+            <ul>
+                <li><i class="fa-solid fa-money-check-dollar"></i> <strong>Transparência no Preço:</strong> Colocar o preço à vista e o valor das parcelas diretamente no anúncio ajuda a filtrar os "curiosos", qualificando o lead logo na entrada.</li>
+                <li><i class="fa-solid fa-stopwatch"></i> <strong>Headlines Magnéticas:</strong> Os primeiros 7 segundos do vídeo são cruciais. É necessário um título falado ou escrito que gere retenção imediata e curiosidade.</li>
+                <li><i class="fa-solid fa-calendar-check"></i> <strong>Volume e Consistência:</strong> A postagem de conteúdo deve ser frequente. Recomenda-se ter pelo menos duas pessoas na loja responsáveis por essa rotina.</li>
+                <li><i class="fa-solid fa-ban"></i> <strong>Fuga do "Mais do Mesmo":</strong> Vídeos editados apenas com imagens do carro e música de fundo não geram conexão. É preciso aparecer, falar com o cliente e tocar na emoção.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Highlighted_Numbers -->
+<div class="slide-container" id="slide8">
+    <h2 class="slide-title">Aumento no Custo de Aquisição</h2>
+    <div class="content-area">
+        <div class="two-column highlight-numbers-layout">
+            <div>
+                <div class="number">+12%</div>
+                <div class="number-label">Custo do Tráfego</div>
+            </div>
+            <div>
+                <h3>O Tráfego Pago Está Mais Caro</h3>
+                <p>Com o repasse de impostos feito recentemente pela Meta, o custo por lead aumentou. Depender de anúncios genéricos neste cenário significa literalmente queimar dinheiro.</p>
+                <p><strong>A Solução:</strong> É imprescindível criar roteiros de vendas padronizados e focar em <em>Roleplay</em> (simulações práticas de vendas) para treinar intensamente a equipe comercial.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Bleed_Image_Right -->
+<div class="slide-container bleed-image-layout" id="slide9">
+    <div class="content-container">
+        <h2 class="slide-title">Preparação: G30 Summit</h2>
+        <div class="content-area">
+            <div class="bleed-text-side">
+                <h3>Inteligência Coletiva</h3>
+                <p>O foco do nosso próximo encontro presencial em Campinas será a troca de experiências reais. Lojistas de todo o Brasil compartilharão os processos que estão trazendo resultados hoje.</p>
+                <p>Para garantir que sua loja aproveite ao máximo, utilizem o material em PDF (roteiros e processos) que será enviado para treinar a equipe imediatamente.</p>
+            </div>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="bleed-image-side" src="https://raw.githubusercontent.com/danielengmat-coder/ftos-g30/fec65420687b0d3d4b2a85d0c9d623f96216d295/image.png" alt="Preparação para o G30 Summit">
+    </div>
+</div>
+
+<!-- Slide 10: Q&A -->
+<div class="slide-container" id="slide10">
+    <div class="qa-layout">
+        <h2>Prontos para aplicar?</h2>
+        <p>Ajustem seus processos, treinem a equipe e nos vemos no G30 Summit!</p>
+    </div>
+</div>
+
+</body>
+</html>
